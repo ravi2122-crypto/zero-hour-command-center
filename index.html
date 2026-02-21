@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZERO HOUR - Live Command Center for Business Management">
+    <meta name="theme-color" content="#0a0e27">
+    <title>⏰ ZERO HOUR - Live Command Center</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23ffd700'>⏰</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span id="statusTime">09:38</span>
+            <span class="status-signal">📶</span>
+            <span id="statusRoom">Room: 123 🟢</span>
+        </div>
+        <div class="status-right">
+            <span id="statusBattery">77⚡</span>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-section">
+            <div class="logo-text">
+                <span class="logo-icon">⏰</span>
+                <span class="logo-name">ZERO HOUR</span>
+            </div>
+            <p class="tagline">LIVE COMMAND CENTER</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" data-section="dashboard" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="#" data-section="lock-targets" class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Lock Targets</span>
+            </a>
+            <a href="#" data-section="finances" class="nav-item">
+                <span class="nav-icon">💰</span>
+                <span class="nav-label">Finances</span>
+            </a>
+            <a href="#" data-section="business" class="nav-item">
+                <span class="nav-icon">🏢</span>
+                <span class="nav-label">Business</span>
+            </a>
+            <a href="#" data-section="projects" class="nav-item">
+                <span class="nav-icon">📁</span>
+                <span class="nav-label">Projects</span>
+            </a>
+            <a href="#" data-section="quick-actions" class="nav-item">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-label">Quick Actions</span>
+            </a>
+        </nav>
+
+        <div class="user-profile">
+            <div class="profile-avatar">RS</div>
+            <div class="profile-info">
+                <p class="profile-name">RAVINDRA SUYAL</p>
+                <p class="profile-role">The AI Insider</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-overlay"></div>
+                <div class="crosshair"></div>
+                <div class="hero-content">
+                    <div class="mission-briefing">
+                        <p class="mission-small">✈️ MISSION ACTIVATED: YOUR FUTURE AWAITS ✈️</p>
+                        <h1 class="hero-title">⏰ ZERO HOUR</h1>
+                        <p class="hero-subtitle">LIVE COMMAND CENTER</p>
+                        <div class="hero-stars">★★★★★</div>
+                        <p class="hero-quote">"Lock Targets. Execute Mission. No Excuses."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Active Projects</p>
+                        <p class="metric-value" id="activeProjects">12</p>
+                        <p class="metric-change">↑ 3 this week</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Daily Targets</p>
+                        <p class="metric-value" id="dailyTargets">8</p>
+                        <p class="metric-change">✓ 5 completed</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Revenue Today</p>
+                        <p class="metric-value" id="revenueToday">₹45K</p>
+                        <p class="metric-change">↑ 12% vs yesterday</p>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-icon">⏳</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Time to Zero Hour</p>
+                        <p class="metric-value" id="timeToDeadline">4h 22m</p>
+                        <p class="metric-change">⚠️ Deadline approaching</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Missions -->
+            <div class="missions-section">
+                <h2 class="section-title">🚀 Active Missions</h2>
+                <div class="missions-grid" id="activeMissions">
+                    <!-- Missions populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Command Center Stats -->
+            <div class="command-stats">
+                <div class="stat-box">
+                    <span class="stat-icon">🔐</span>
+                    <div>
+                        <p class="stat-label">Targets Locked</p>
+                        <p class="stat-value" id="targetsLocked">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">✅</span>
+                    <div>
+                        <p class="stat-label">Completed</p>
+                        <p class="stat-value" id="targetsCompleted">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">⏳</span>
+                    <div>
+                        <p class="stat-label">In Progress</p>
+                        <p class="stat-value" id="targetsInProgress">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">📈</span>
+                    <div>
+                        <p class="stat-label">Success Rate</p>
+                        <p class="stat-value" id="successRate">0%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lock Targets Section -->
+        <section id="lock-targets" class="content-section">
+            <h1 class="page-title">🎯 Lock Your Targets</h1>
+            <p class="page-subtitle">Set your mission objectives and deadlines. Execute with precision.</p>
+
+            <!-- Target Form -->
+            <div class="form-card">
+                <h2 class="form-title">📋 Create New Target</h2>
+                <form id="targetForm" class="target-form">
+                    <div class="form-group">
+                        <label for="targetName">Target Name / Priority</label>
+                        <input 
+                            type="text" 
+                            id="targetName" 
+                            class="input-field" 
+                            placeholder="Enter Target Name / Priority"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetDate">Select Target Date</label>
+                            <input 
+                                type="date" 
+                                id="targetDate" 
+                                class="input-field"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="targetTime">Set Deadline (ZERO HOUR)</label>
+                            <input 
+                                type="time" 
+                                id="targetTime" 
+                                class="input-field"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetCategory">Category</label>
+                        <select id="targetCategory" class="input-field" required>
+                            <option value="">Select Category</option>
+                            <option value="Financial">Financial Solutions</option>
+                            <option value="Marketing">Digital Marketing</option>
+                            <option value="Wellness">Wellness</option>
+                            <option value="AI">AI Services</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Urgent">Urgent (🔴)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lock">
+                        ✓ LOCK TARGET
+                    </button>
+                </form>
+            </div>
+
+            <!-- Targets List -->
+            <div class="targets-section">
+                <h2 class="section-title">📌 Your Locked Targets</h2>
+                <div class="targets-list" id="targetsList">
+                    <p class="empty-state">No targets locked yet. Create your first mission above! 🚀</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finances Section -->
+        <section id="finances" class="content-section">
+            <h1 class="page-title">💰 Financial Overview</h1>
+            <p class="page-subtitle">Monitor revenue, invoices, and business performance metrics.</p>
+
+            <!-- Financial Metrics -->
+            <div class="financial-grid">
+                <div class="finance-card highlight">
+                    <div class="finance-icon">💵</div>
+                    <p class="finance-label">Monthly Revenue</p>
+                    <p class="finance-value">₹12,45,000</p>
+                    <p class="finance-change">↑ 28% this month</p>
+                </div>
+
+                <div class="finance-card">
+                    <div class="finance-icon">📊</div>
+                    <p class="finance-label">Daily Target</p>
+                    <p class="finance-value">₹50,000</p>
+                    <p class="finance-change">✓ 90% achieved</p>
+                </div>
+
+                <div class="finance-card">
+                    <div class="finance-icon">⏳</div>
+                    <p class="finance-label">Outstanding</p>
+                    <p class="finance-value">₹2,34,500</p>
+                    <p class="finance-change">3 invoices pending</p>
+                </div>
+
+                <div class="finance-card">
+                    <div class="finance-icon">👥</div>
+                    <p class="finance-label">Active Clients</p>
+                    <p class="finance-value">47</p>
+                    <p class="finance-change">+5 new this month</p>
+                </div>
+            </div>
+
+            <!-- Service Tiers -->
+            <div class="service-tiers">
+                <h2 class="section-title">🏆 Service Tier Pricing</h2>
+                
+                <!-- Viraaj Earth -->
+                <div class="tier-category">
+                    <h3 class="tier-category-title">🌍 Viraaj Earth</h3>
+                    <div class="tiers-grid">
+                        <div class="tier-card">
+                            <p class="tier-name">Starter</p>
+                            <p class="tier-price">₹5,000/mo</p>
+                            <p class="tier-clients">Active: 12</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">Professional</p>
+                            <p class="tier-price">₹15,000/mo</p>
+                            <p class="tier-clients">Active: 18</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">Enterprise</p>
+                            <p class="tier-price">₹35,000/mo</p>
+                            <p class="tier-clients">Active: 8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GFSI -->
+                <div class="tier-category">
+                    <h3 class="tier-category-title">💼 GFSI (Financial Solutions)</h3>
+                    <div class="tiers-grid">
+                        <div class="tier-card">
+                            <p class="tier-name">Basic</p>
+                            <p class="tier-price">₹10,000/mo</p>
+                            <p class="tier-clients">Active: 15</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">Premium</p>
+                            <p class="tier-price">₹25,000/mo</p>
+                            <p class="tier-clients">Active: 22</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">VIP</p>
+                            <p class="tier-price">₹50,000/mo</p>
+                            <p class="tier-clients">Active: 6</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Services -->
+                <div class="tier-category">
+                    <h3 class="tier-category-title">🤖 AI Services</h3>
+                    <div class="tiers-grid">
+                        <div class="tier-card">
+                            <p class="tier-name">Developer</p>
+                            <p class="tier-price">₹2,000/mo</p>
+                            <p class="tier-clients">Active: 15</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">Business</p>
+                            <p class="tier-price">₹8,000/mo</p>
+                            <p class="tier-clients">Active: 20</p>
+                        </div>
+                        <div class="tier-card">
+                            <p class="tier-name">Enterprise</p>
+                            <p class="tier-price">₹20,000/mo</p>
+                            <p class="tier-clients">Active: 7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Section -->
+        <section id="business" class="content-section">
+            <h1 class="page-title">🏢 Multi-Business Management</h1>
+            <p class="page-subtitle">Seamlessly manage all your business operations.</p>
+
+            <!-- Business Tabs -->
+            <div class="business-tabs">
+                <button class="business-tab active" data-business="viraaj">🌍 Viraaj Earth</button>
+                <button class="business-tab" data-business="gfsi">💼 GFSI</button>
+                <button class="business-tab" data-business="ai">🤖 AI Services</button>
+            </div>
+
+            <!-- Business Content -->
+            <div class="business-content">
+                <!-- Viraaj Earth -->
+                <div class="business-module active" id="viraaj-module">
+                    <div class="business-header">
+                        <div class="business-icon">🌍</div>
+                        <div>
+                            <h2>Viraaj Earth</h2>
+                            <p>Marketing & Eco-products</p>
+                        </div>
+                    </div>
+                    <div class="business-stats">
+                        <div class="stat-card">
+                            <p class="stat-label">Monthly Revenue</p>
+                            <p class="stat-number">₹4,50,000</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Active Clients</p>
+                            <p class="stat-number">38</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Conversion Rate</p>
+                            <p class="stat-number">32%</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Growth</p>
+                            <p class="stat-number">↑ 18%</p>
+                        </div>
+                    </div>
+                    <div class="active-projects">
+                        <h3>Active Projects</h3>
+                        <ul>
+                            <li>✓ Social Media Campaign</li>
+                            <li>✓ Email Marketing Automation</li>
+                            <li>✓ SEO Optimization</li>
+                            <li>✓ Brand Awareness Initiative</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GFSI -->
+                <div class="business-module" id="gfsi-module">
+                    <div class="business-header">
+                        <div class="business-icon">💼</div>
+                        <div>
+                            <h2>GFSI</h2>
+                            <p>Financial Solutions & Investment</p>
+                        </div>
+                    </div>
+                    <div class="business-stats">
+                        <div class="stat-card">
+                            <p class="stat-label">AUM (Assets Under Mgmt)</p>
+                            <p class="stat-number">₹24.5 Cr</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Active Clients</p>
+                            <p class="stat-number">43</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Avg Returns</p>
+                            <p class="stat-number">18.5%</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Portfolio Value</p>
+                            <p class="stat-number">₹31 Cr</p>
+                        </div>
+                    </div>
+                    <div class="active-projects">
+                        <h3>Active Services</h3>
+                        <ul>
+                            <li>✓ Portfolio Management</li>
+                            <li>✓ Investment Consulting</li>
+                            <li>✓ Tax Planning</li>
+                            <li>✓ Wealth Management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- AI Services -->
+                <div class="business-module" id="ai-module">
+                    <div class="business-header">
+                        <div class="business-icon">🤖</div>
+                        <div>
+                            <h2>AI Services</h2>
+                            <p>Business Automation & AI Solutions</p>
+                        </div>
+                    </div>
+                    <div class="business-stats">
+                        <div class="stat-card">
+                            <p class="stat-label">Monthly Revenue</p>
+                            <p class="stat-number">₹3,20,000</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Active Users</p>
+                            <p class="stat-number">267</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">API Calls (M)</p>
+                            <p class="stat-number">2.4M</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Uptime</p>
+                            <p class="stat-number">99.9%</p>
+                        </div>
+                    </div>
+                    <div class="active-projects">
+                        <h3>Active Solutions</h3>
+                        <ul>
+                            <li>✓ Chatbot Integration</li>
+                            <li>✓ Predictive Analytics</li>
+                            <li>✓ Document Processing</li>
+                            <li>✓ Custom AI Models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <h1 class="page-title">📁 Projects & Milestones</h1>
+            <p class="page-subtitle">Track all active projects and their progress.</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Digital Marketing Campaign</h3>
+                        <span class="project-status in-progress">In Progress</span>
+                    </div>
+                    <p class="project-desc">Social media and email marketing for Viraaj Earth</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <p class="progress-text">65% Complete</p>
+                    </div>
+                    <p class="project-team">Team: 3 members</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Portfolio Optimization</h3>
+                        <span class="project-status in-progress">In Progress</span>
+                    </div>
+                    <p class="project-desc">Financial portfolio restructuring for GFSI clients</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                        <p class="progress-text">45% Complete</p>
+                    </div>
+                    <p class="project-team">Team: 2 members</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI Chatbot Development</h3>
+                        <span class="project-status completed">Completed</span>
+                    </div>
+                    <p class="project-desc">Customer support automation for AI Services</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <p class="progress-text">100% Complete</p>
+                    </div>
+                    <p class="project-team">Team: 4 members</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Client Onboarding System</h3>
+                        <span class="project-status pending">Pending</span>
+                    </div>
+                    <p class="project-desc">Automated onboarding workflow for all businesses</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                        </div>
+                        <p class="progress-text">15% Complete</p>
+                    </div>
+                    <p class="project-team">Team: 2 members</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions Section -->
+        <section id="quick-actions" class="content-section">
+            <h1 class="page-title">⚡ Quick Actions</h1>
+            <p class="page-subtitle">One-click access to important tasks and integrations.</p>
+
+            <!-- Quick Share Actions -->
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon">💬</div>
+                    <h3>Share on WhatsApp</h3>
+                    <p>Send dashboard link to clients</p>
+                    <button class="btn btn-action" onclick="shareWhatsApp()">
+                        📱 Share Link
+                    </button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📸</div>
+                    <h3>Instagram Share</h3>
+                    <p>Post business updates & news</p>
+                    <button class="btn btn-action" onclick="shareInstagram()">
+                        📷 Open Instagram
+                    </button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">💼</div>
+                    <h3>LinkedIn Update</h3>
+                    <p>Share professional achievements</p>
+                    <button class="btn btn-action" onclick="shareLinkedIn()">
+                        🔗 Post on LinkedIn
+                    </button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📊</div>
+                    <h3>Generate Report</h3>
+                    <p>Download performance metrics</p>
+                    <button class="btn btn-action" onclick="generateReport()">
+                        📥 Download Report
+                    </button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📧</div>
+                    <h3>Send Email</h3>
+                    <p>Email targets to team & clients</p>
+                    <button class="btn btn-action" onclick="sendEmail()">
+                        ✉️ Open Email
+                    </button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📅</div>
+                    <h3>Schedule Meeting</h3>
+                    <p>Book client or team meetings</p>
+                    <button class="btn btn-action" onclick="scheduleMeeting()">
+                        📆 Open Calendar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Client Directory -->
+            <div class="client-directory">
+                <h2 class="section-title">👥 Client Directory</h2>
+                <div class="clients-list" id="clientsList">
+                    <div class="client-item">
+                        <div class="client-info">
+                            <p class="client-name">Rajesh Kumar</p>
+                            <p class="client-tier">GFSI - Premium</p>
+                            <p class="client-status">Active</p>
+                        </div>
+                        <div class="client-actions">
+                            <button class="btn-icon" onclick="callClient('Rajesh')">☎️</button>
+                            <button class="btn-icon" onclick="whatsappClient('Rajesh')">💬</button>
+                        </div>
+                    </div>
+
+                    <div class="client-item">
+                        <div class="client-info">
+                            <p class="client-name">Priya Singh</p>
+                            <p class="client-tier">Viraaj Earth - Professional</p>
+                            <p class="client-status">Active</p>
+                        </div>
+                        <div class="client-actions">
+                            <button class="btn-icon" onclick="callClient('Priya')">☎️</button>
+                            <button class="btn-icon" onclick="whatsappClient('Priya')">💬</button>
+                        </div>
+                    </div>
+
+                    <div class="client-item">
+                        <div class="client-info">
+                            <p class="client-name">Amit Patel</p>
+                            <p class="client-tier">AI Services - Business</p>
+                            <p class="client-status">Active</p>
+                        </div>
+                        <div class="client-actions">
+                            <button class="btn-icon" onclick="callClient('Amit')">☎️</button>
+                            <button class="btn-icon" onclick="whatsappClient('Amit')">💬</button>
+                        </div>
+                    </div>
+
+                    <div class="client-item">
+                        <div class="client-info">
+                            <p class="client-name">Ananya Desai</p>
+                            <p class="client-tier">GFSI - VIP</p>
+                            <p class="client-status">Active</p>
+                        </div>
+                        <div class="client-actions">
+                            <button class="btn-icon" onclick="callClient('Ananya')">☎️</button>
+                            <button class="btn-icon" onclick="whatsappClient('Ananya')">💬</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed'));
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
