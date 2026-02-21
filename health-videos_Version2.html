@@ -1,0 +1,84 @@
+<!-- EMBEDDED YOUTUBE VIDEOS -->
+
+<section class="health-videos">
+  <h2>💪 Health & Wellness Videos</h2>
+  
+  <div class="video-card">
+    <h3>5 Min Morning Yoga</h3>
+    <iframe 
+      width="100%" 
+      height="300" 
+      src="https://www.youtube.com/embed/tYzlvpdUe_s" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    <button onclick="linkHealthTimer('yoga', 300)">Start 5 Min Timer</button>
+    <a href="https://example.com/yoga-guide" target="_blank">View Full Guide</a>
+  </div>
+
+  <div class="video-card">
+    <h3>30 Min Full Body Workout</h3>
+    <iframe 
+      width="100%" 
+      height="300" 
+      src="https://www.youtube.com/embed/Xy_5WpWH4M4" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    <button onclick="linkHealthTimer('workout', 1800)">Start 30 Min Timer</button>
+    <a href="https://example.com/nutrition" target="_blank">Nutrition Tips</a>
+  </div>
+
+  <div class="video-card">
+    <h3>10 Min Meditation</h3>
+    <iframe 
+      width="100%" 
+      height="300" 
+      src="https://www.youtube.com/embed/inpok4MKVLM" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    <button onclick="linkHealthTimer('meditation', 600)">Start 10 Min Timer</button>
+    <a href="https://example.com/meditation" target="_blank">Meditation Guide</a>
+  </div>
+</section>
+
+<style>
+.video-card {
+  background: linear-gradient(135deg, rgba(20, 24, 41, 0.6), rgba(26, 31, 58, 0.6));
+  border: 1px solid #2a3f5f;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.video-card h3 {
+  color: #ffd700;
+  margin-bottom: 15px;
+}
+
+.video-card iframe {
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.video-card button {
+  background: linear-gradient(135deg, #00d4ff, #00a8cc);
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.video-card a {
+  color: #00ff41;
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>

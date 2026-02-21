@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZERO HOUR - Live Command Center - Goals, Health, Finance, Business, Motivation">
+    <meta name="theme-color" content="#0a0e27">
+    <title>⏰ ZERO HOUR - Live Command Center</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23ffd700'>⏰</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SPLASH SCREEN (Shows on first load) -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="krishna-animation">
+                <div class="krishna-circle"></div>
+                <div class="krishna-icon">🕉️</div>
+            </div>
+            <h1 class="splash-title">ZERO HOUR</h1>
+            <p class="splash-subtitle">Live Command Center</p>
+            
+            <div class="splash-message">
+                <p id="splashGeeta" class="geeta-shlok">"Loading today's wisdom..."</p>
+                <p id="splashMeaning" class="geeta-meaning"></p>
+            </div>
+            
+            <p class="splash-quote" id="splashMotivation">"Your journey begins now..."</p>
+            <p class="splash-credit">Built by Ravi Suyal - "The AI Insider"</p>
+        </div>
+    </div>
+
+    <!-- CODE LOGIN SCREEN (Before dashboard) -->
+    <div id="codeLoginScreen" class="code-login-screen" style="display: none;">
+        <div class="code-login-container">
+            <div class="code-header">
+                <h1>⏰ ZERO HOUR</h1>
+                <p>Your Personal Command Center</p>
+            </div>
+
+            <div class="code-form">
+                <h2>Welcome Back!</h2>
+                <p class="code-description">Enter your personal code to access your workspace</p>
+                
+                <input 
+                    type="text" 
+                    id="userCodeInput" 
+                    class="code-input" 
+                    placeholder="Enter your personal code (e.g., RAVI001)"
+                    maxlength="20"
+                    autocomplete="off"
+                >
+                
+                <div class="code-info">
+                    <p class="info-text">
+                        💡 <strong>Your code is your identity</strong><br>
+                        • Same code = Same targets & data<br>
+                        • Different codes = Private workspaces<br>
+                        • Share code to collaborate with team
+                    </p>
+                </div>
+
+                <button id="codeLoginBtn" class="btn btn-primary" onclick="loginWithCode()">
+                    🔓 UNLOCK ZERO HOUR
+                </button>
+
+                <p class="code-hint">Forgot your code? Create a new one - each code creates separate workspace</p>
+            </div>
+
+            <div class="code-footer">
+                <p>Your data is private. Each code has its own secure workspace.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar" id="statusBar" style="display: none;">
+        <div class="status-left">
+            <span id="statusTime">09:38</span>
+            <span class="status-signal">📶</span>
+            <span id="statusRoom">Online 🟢</span>
+        </div>
+        <div class="status-right">
+            <span id="statusBattery">77⚡</span>
+        </div>
+    </div>
+
+    <!-- Running Quote Ticker -->
+    <div class="running-quote-ticker" id="quoteTickerBar" style="display: none;">
+        <div id="runningQuote" class="running-quote-content">
+            <p class="quote-text">Loading inspiration...</p>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" style="display: none;">☰</button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar" style="display: none;">
+        <div class="logo-section">
+            <div class="logo-text">
+                <span class="logo-icon">⏰</span>
+                <span class="logo-name">ZERO HOUR</span>
+            </div>
+            <p class="tagline">LIVE COMMAND CENTER</p>
+        </div>
+
+        <div class="user-code-display">
+            <p class="code-display-label">Logged in as:</p>
+            <p class="code-display-value" id="displayUserCode">RAVI001</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" data-section="dashboard" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="#" data-section="personal-goals" class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Personal Goals</span>
+            </a>
+            <a href="#" data-section="team-goals" class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span class="nav-label">Team Goals</span>
+            </a>
+            <a href="#" data-section="health" class="nav-item">
+                <span class="nav-icon">🏥</span>
+                <span class="nav-label">Health & Wellness</span>
+            </a>
+            <a href="#" data-section="personal-finance" class="nav-item">
+                <span class="nav-icon">💰</span>
+                <span class="nav-label">Personal Finance</span>
+            </a>
+            <a href="#" data-section="business-finance" class="nav-item">
+                <span class="nav-icon">🏢</span>
+                <span class="nav-label">Business Finance</span>
+            </a>
+            <a href="#" data-section="business" class="nav-item">
+                <span class="nav-icon">🏭</span>
+                <span class="nav-label">Business Management</span>
+            </a>
+            <a href="#" data-section="projects" class="nav-item">
+                <span class="nav-icon">📁</span>
+                <span class="nav-label">Projects</span>
+            </a>
+            <a href="#" data-section="stories" class="nav-item">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Stories & Books</span>
+            </a>
+            <a href="#" data-section="chatbot" class="nav-item">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-label">AI Chatbot</span>
+            </a>
+            <a href="#" data-section="career" class="nav-item">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-label">Career & Growth</span>
+            </a>
+            <a href="#" data-section="quick-actions" class="nav-item">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-label">Quick Actions</span>
+            </a>
+            <a href="#" data-section="settings" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </a>
+        </nav>
+
+        <div class="user-profile">
+            <div class="profile-avatar" id="profileAvatar">R</div>
+            <div class="profile-info">
+                <p class="profile-name" id="profileName">User Profile</p>
+                <p class="profile-role">Zero Hour User</p>
+            </div>
+        </div>
+
+        <button class="btn-logout" onclick="logout()">🔓 Switch Code</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent" style="display: none;">
+        
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="content-section active">
+            <div class="hero-section">
+                <div class="hero-overlay"></div>
+                <div class="crosshair"></div>
+                <div class="hero-content">
+                    <div class="mission-briefing">
+                        <p class="mission-small">✈️ MISSION ACTIVATED: YOUR FUTURE AWAITS ✈️</p>
+                        <h1 class="hero-title">⏰ ZERO HOUR</h1>
+                        <p class="hero-subtitle">LIVE COMMAND CENTER</p>
+                        <div class="hero-stars">★★★★★</div>
+                        <p class="hero-quote">"Lock Targets. Execute Mission. No Excuses."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Personal Goals</p>
+                        <p class="metric-value" id="totalPersonalGoals">0</p>
+                        <p class="metric-change">Track your journey</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🏥</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Health Score</p>
+                        <p class="metric-value" id="healthScore">0%</p>
+                        <p class="metric-change">Today's wellness</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Finance Status</p>
+                        <p class="metric-value" id="financialStatus">Tracking</p>
+                        <p class="metric-change">Personal + Business</p>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-icon">⏳</div>
+                    <div class="metric-content">
+                        <p class="metric-label">Time to Deadline</p>
+                        <p class="metric-value" id="timeToDeadline">--:--</p>
+                        <p class="metric-change">Next goal deadline</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="command-stats">
+                <div class="stat-box">
+                    <span class="stat-icon">🔐</span>
+                    <div>
+                        <p class="stat-label">Goals Created</p>
+                        <p class="stat-value" id="goalsCreated">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">✅</span>
+                    <div>
+                        <p class="stat-label">Completed</p>
+                        <p class="stat-value" id="goalsCompleted">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">⏳</span>
+                    <div>
+                        <p class="stat-label">In Progress</p>
+                        <p class="stat-value" id="goalsInProgress">0</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">📈</span>
+                    <div>
+                        <p class="stat-label">Success Rate</p>
+                        <p class="stat-value" id="successRate">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daily-motivation">
+                <div class="motivation-card">
+                    <p class="motivation-title">💭 Today's Motivation</p>
+                    <p id="dailyMotivation" class="motivation-text">"Focus on what you can control today."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERSONAL GOALS SECTION -->
+        <section id="personal-goals" class="content-section">
+            <h1 class="page-title">🎯 Personal Goals</h1>
+            <p class="page-subtitle">Set and track your personal objectives</p>
+
+            <div class="form-card">
+                <h2 class="form-title">📋 Create New Personal Goal</h2>
+                <form id="personalGoalForm" class="target-form">
+                    <div class="form-group">
+                        <label for="goalName">Goal Name</label>
+                        <input type="text" id="goalName" class="input-field" placeholder="e.g., Learn Python" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="goalDate">Target Date</label>
+                            <input type="date" id="goalDate" class="input-field" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="goalCategory">Category</label>
+                            <select id="goalCategory" class="input-field" required>
+                                <option value="">Select Category</option>
+                                <option value="Health">Health & Fitness</option>
+                                <option value="Learning">Learning</option>
+                                <option value="Financial">Financial</option>
+                                <option value="Relationship">Relationship</option>
+                                <option value="Skill">Skill Development</option>
+                                <option value="Personal">Personal Project</option>
+                                <option value="Habit">Habit Building</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goalDescription">Description</label>
+                        <textarea id="goalDescription" class="input-field" placeholder="What's this goal about?" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lock">✓ CREATE GOAL</button>
+                </form>
+            </div>
+
+            <div class="targets-section">
+                <h2 class="section-title">📌 Your Personal Goals</h2>
+                <div class="targets-list" id="personalGoalsList">
+                    <p class="empty-state">No personal goals yet. Create your first goal! 🚀</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM GOALS SECTION -->
+        <section id="team-goals" class="content-section">
+            <h1 class="page-title">👥 Team Goals</h1>
+            <p class="page-subtitle">Collaborate with your team on shared objectives</p>
+
+            <div class="form-card">
+                <h2 class="form-title">📋 Create Team Goal</h2>
+                <form id="teamGoalForm" class="target-form">
+                    <div class="form-group">
+                        <label for="teamGoalName">Team Goal Name</label>
+                        <input type="text" id="teamGoalName" class="input-field" placeholder="e.g., Project Launch" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamCode">Team Code</label>
+                            <input type="text" id="teamCode" class="input-field" placeholder="e.g., FAMILY123" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamDeadline">Deadline</label>
+                            <input type="date" id="teamDeadline" class="input-field" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lock">✓ CREATE TEAM GOAL</button>
+                </form>
+            </div>
+
+            <div class="targets-section">
+                <h2 class="section-title">👥 Shared Team Goals</h2>
+                <div class="targets-list" id="teamGoalsList">
+                    <p class="empty-state">No team goals yet. Create one to collaborate! 🤝</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HEALTH & WELLNESS SECTION -->
+        <section id="health" class="content-section">
+            <h1 class="page-title">🏥 Health & Wellness</h1>
+            <p class="page-subtitle">Track your health journey and wellness goals</p>
+
+            <div id="healthStatsContainer" class="health-stats">
+                <div class="health-score">
+                    <div class="score-circle">
+                        <div class="score-value" id="healthScoreValue">0%</div>
+                    </div>
+                    <p>Health Score</p>
+                </div>
+            </div>
+
+            <div class="health-actions">
+                <button class="health-action-btn" onclick="addWater()">💧 Log Water</button>
+                <button class="health-action-btn" onclick="logSleep()">😴 Log Sleep</button>
+                <button class="health-action-btn" onclick="logExercise()">💪 Log Exercise</button>
+            </div>
+
+            <h2 class="section-title">🎬 Health Videos</h2>
+            <div id="healthVideosContainer" class="videos-grid">
+                <p class="empty-state">Loading health videos...</p>
+            </div>
+
+            <h2 class="section-title">👨‍⚕️ Expert Resources</h2>
+            <div class="expert-resources">
+                <a href="https://www.healthline.com/" target="_blank" class="resource-card">
+                    <p class="resource-title">Healthline</p>
+                    <p class="resource-desc">Health information</p>
+                </a>
+                <a href="https://www.mayoclinic.org/" target="_blank" class="resource-card">
+                    <p class="resource-title">Mayo Clinic</p>
+                    <p class="resource-desc">Medical expertise</p>
+                </a>
+                <a href="https://www.nutrition.gov/" target="_blank" class="resource-card">
+                    <p class="resource-title">Nutrition.gov</p>
+                    <p class="resource-desc">Nutrition guidelines</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- PLACEHOLDER SECTIONS (Will add content in next steps) -->
+        <section id="personal-finance" class="content-section">
+            <h1 class="page-title">💰 Personal Finance</h1>
+            <p class="page-subtitle">Coming Soon - Track personal expenses and income</p>
+        </section>
+
+        <section id="business-finance" class="content-section">
+            <h1 class="page-title">🏢 Business Finance</h1>
+            <p class="page-subtitle">Coming Soon - Manage business expenses and revenue</p>
+        </section>
+
+        <section id="business" class="content-section">
+            <h1 class="page-title">🏭 Business Management</h1>
+            <p class="page-subtitle">Coming Soon - Manage your business operations</p>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h1 class="page-title">📁 Projects</h1>
+            <p class="page-subtitle">Coming Soon - Track all your projects</p>
+        </section>
+
+        <section id="stories" class="content-section">
+            <h1 class="page-title">📚 Stories & Books</h1>
+            <p class="page-subtitle">Coming Soon - 50+ Inspirational stories</p>
+        </section>
+
+        <section id="chatbot" class="content-section">
+            <h1 class="page-title">🤖 AI Chatbot</h1>
+            <p class="page-subtitle">Coming Soon - Your personal motivation assistant</p>
+        </section>
+
+        <section id="career" class="content-section">
+            <h1 class="page-title">🚀 Career & Growth</h1>
+            <p class="page-subtitle">Coming Soon - Business ideas and skill development</p>
+        </section>
+
+        <section id="quick-actions" class="content-section">
+            <h1 class="page-title">⚡ Quick Actions</h1>
+            <p class="page-subtitle">Useful shortcuts and integrations</p>
+
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon">💬</div>
+                    <h3>Share on WhatsApp</h3>
+                    <button class="btn btn-action" onclick="shareWhatsApp()">📱 Share</button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📸</div>
+                    <h3>Instagram Share</h3>
+                    <button class="btn btn-action" onclick="shareInstagram()">📷 Share</button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">💼</div>
+                    <h3>LinkedIn Update</h3>
+                    <button class="btn btn-action" onclick="shareLinkedIn()">🔗 Share</button>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📊</div>
+                    <h3>Generate Report</h3>
+                    <button class="btn btn-action" onclick="generateReport()">📥 Download</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="settings" class="content-section">
+            <h1 class="page-title">⚙️ Settings</h1>
+            <p class="page-subtitle">Customize your experience</p>
+
+            <div class="settings-panel">
+                <div class="setting-item">
+                    <p class="setting-label">Sound Notifications</p>
+                    <input type="checkbox" id="soundToggle" checked class="setting-toggle">
+                </div>
+
+                <div class="setting-item">
+                    <p class="setting-label">Push Notifications</p>
+                    <input type="checkbox" id="notificationToggle" checked class="setting-toggle">
+                </div>
+
+                <div class="setting-item">
+                    <p class="setting-label">Your User Code</p>
+                    <p id="settingUserCode" class="setting-value">RAVI001</p>
+                    <button class="btn btn-secondary" onclick="copyUserCode()">📋 Copy Code</button>
+                </div>
+
+                <div class="setting-item">
+                    <p class="setting-label">Data Management</p>
+                    <button class="btn btn-secondary" onclick="exportData()">📥 Export Data</button>
+                    <button class="btn btn-secondary" onclick="clearAllData()" style="background: #ff1744;">🗑️ Clear All</button>
+                </div>
+
+                <div class="setting-item">
+                    <p class="setting-label">About</p>
+                    <button class="btn btn-secondary" onclick="showAbout()">ℹ️ View Info</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer" id="appFooter" style="display: none;">
+        <div class="footer-content">
+            <div class="built-by">
+                <p class="built-text">Built by <strong>Ravi Suyal</strong></p>
+                <p class="tagline">"The AI Insider"</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="showAbout()">About</a>
+                <a href="#" onclick="shareApp()">Share</a>
+                <a href="#" onclick="reportBug()">Feedback</a>
+            </div>
+            <div class="version">
+                <p>v2.0 | Zero Hour Command Center</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="timer-system.js"></script>
+    <script src="health-system.js"></script>
+    <script src="quotes-system.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(reg => {
+                console.log('Service Worker registered successfully');
+            }).catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+    </script>
+</body>
+</html>
